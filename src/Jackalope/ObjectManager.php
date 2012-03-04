@@ -793,7 +793,10 @@ class ObjectManager
                 }
             }
         }
-        $this->transport->finishSave();
+        
+        if (method_exists($this->transport, "finishSave")) {
+            $this->transport->finishSave();
+        }
 
 
         //clear those lists before reloading the newly added nodes from backend, to avoid collisions
